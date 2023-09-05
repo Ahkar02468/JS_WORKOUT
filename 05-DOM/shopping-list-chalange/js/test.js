@@ -40,6 +40,19 @@ function createIcon(classes){
     return icon;
 }
 
-createitem('Bananas-inefficient');
-createNewItem('Cocunut(in performant way)')
-createNewItem('Cheeese')
+function insertAfter(newEL, existingEL){
+    existingEL.parentElement.insertBefore(newEL, existingEL.nextSibling);
+}
+
+const li = document.createElement('li');
+li.textContent = 'Insert Me After!';
+
+// Existing element to insert after
+const firstItem = document.querySelector('li:first-child');
+console.log(firstItem);
+
+insertAfter(li, firstItem);
+
+    // createitem('Bananas-inefficient');
+    // createNewItem('Cocunut(in performant way)')
+    // createNewItem('Cheeese')
