@@ -44,6 +44,18 @@ function insertAfter(newEL, existingEL){
     existingEL.parentElement.insertBefore(newEL, existingEL.nextSibling);
 }
 
+//replace item
+function replaceItem(){
+    const firstChild = document.querySelector('li:first-child');
+    const createLi = document.createElement('li');
+    createLi.textContent = 'Replace word';
+
+    firstChild.replaceWith(createLi);
+    console.log(firstChild);
+}
+
+replaceItem();
+
 const li = document.createElement('li');
 li.textContent = 'Insert Me After!';
 
