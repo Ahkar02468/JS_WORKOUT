@@ -59,4 +59,35 @@ function onSubmitNew(e){
 // formInput.addEventListener('submit', onSubmit)
 
 
-formInput.addEventListener('submit', onSubmitNew)
+// formInput.addEventListener('submit', onSubmitNew)
+
+//event delegation
+const listItems = document.querySelectorAll('li');
+const list = document.querySelector('ul');
+console.log(list);
+
+// listItems.forEach((item) => {
+//     item.addEventListener('click', (e) => {
+//         console.log(e.target.remove());
+//     });
+// });
+
+
+list.addEventListener('click', (e) => {
+    // console.log(e.target);
+    if(e.target.tagName === 'LI'){
+        e.target.remove();
+    }
+})
+
+list.addEventListener('mouseover', (e) => {
+    if(e.target.tagName === 'LI'){
+        e.target.style.color = 'blue';
+    }
+})
+
+list.addEventListener('mouseout', (e) => {
+    if(e.target.tagName === 'LI'){
+        e.target.style.color = 'black';
+    }
+})
