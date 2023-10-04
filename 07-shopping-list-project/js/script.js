@@ -25,10 +25,21 @@ function onAddItemSubmit(e){
     }
     if(isEditMode){
         const itemToEdit = itemList.querySelector('.edit-text');
+        console.log(itemToEdit);
+        if(isItemAlreadyExist(newItem)){
+            alert('Item is already Exist');
+            return;
+        }
         removeItemFromLocalStorage(itemToEdit.textContent);
+        
         itemToEdit.classList.remove('edit-text');
         itemToEdit.remove();
         isEditMode = false;
+    }else{
+        if(isItemAlreadyExist(newItem)){
+            alert('Item is already Exist');
+            return;
+        }
     }
     //Add item to Local storage
     addItemToLocalStorage(newItem);
@@ -39,6 +50,11 @@ function onAddItemSubmit(e){
 
 
     // console.log(li);
+}
+
+function isItemAlreadyExist(item){
+    const itemfromLocal = getItemFromStorage();
+    return itemfromLocal.includes(item); 
 }
 
 function addItemtoDOM(item){
