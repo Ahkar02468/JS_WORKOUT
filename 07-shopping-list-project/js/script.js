@@ -12,7 +12,7 @@ function displayItems(){
     items.forEach(item => {
         addItemtoDOM(item)
     });
-    checkUI();
+    resetUI();
 }
 
 //add item to the list
@@ -23,9 +23,18 @@ function onAddItemSubmit(e){
         alert('You need to enter something!!');
         return;
     }
+    if(isEditMode){
+        const itemToEdit = itemList.querySelector('.edit-text');
+        removeItemFromLocalStorage(itemToEdit.textContent);
+        itemToEdit.classList.remove('edit-text');
+        itemToEdit.remove();
+        isEditMode = false;
+    }
+    //Add item to Local storage
     addItemToLocalStorage(newItem);
+    //add item to DOM
     addItemtoDOM(newItem);
-    checkUI();
+    resetUI();
     itemInput.value = '';
 
 
@@ -86,13 +95,15 @@ function onClickRemoveBtn(e){
 }
 
 function setToEditMode(item){
-    console.log(item);
+    // console.log(item);
     isEditMode = true;
+    console.log(isEditMode);
     itemList.querySelectorAll('li').forEach(i => i.classList.remove('edit-text'));
     item.classList.add('edit-text'); 
     formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
     formBtn.style.backgroundColor = '#b38a1a';
     itemInput.value = item.textContent;
+
 }
 
 //remove item from the list
@@ -101,7 +112,7 @@ function removeItem(item){
     if(confirm('Are you sure?')){
         item.remove(); 
         removeItemFromLocalStorage(item.textContent);
-        checkUI();
+        resetUI();
     };
 }
 
@@ -120,9 +131,9 @@ function clearItems(e){
     while(itemList.firstChild){
         itemList.removeChild(itemList.firstChild);
     }
-    checkUI();
+    resetUI();
 }
-function checkUI(){
+function resetUI(){
     const items = itemList.querySelectorAll('li');
     // console.log(items);
     if(items.length === 0){
@@ -132,6 +143,10 @@ function checkUI(){
         clearBtn.style.display = 'block';
         itemFilter.style.display = 'block';
     }
+
+    formBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Add Item`;
+    formBtn.style.backgroundColor = '#333';
+    isEditMode = false;
 }
 
 function filterItems(e){
@@ -155,4 +170,4 @@ clearBtn.addEventListener('click', clearItems);
 itemFilter.addEventListener('input', filterItems);
 document.addEventListener('DOMContentLoaded', displayItems);
 
-checkUI();
+resetUI();
