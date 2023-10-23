@@ -3,12 +3,23 @@ function fetchUser(){
     // document.querySelector('button').innerText =  spinner;
     showSpinner();
     
-    fetch('https://randomuser.me/api/')
-    .then(response => response.json())
+    fetch('https://randomuser.me/api')
+    .then(response => {
+      console.log(response.ok);
+      if(!response.ok){
+        throw new Error('Request Faild.')
+      }
+      return response.json();
+    })
     .then(data => {
         hideSpinner();
         displayUser(data.results[0]);
         // console.log(data.results[0]);
+    })
+    .catch((error) => {
+      hideSpinner();
+      console.log(error);
+      document.getElementById('generate').innerHTML = `<p class="text-xl text-center text-500 text-red">${error}</p>`;
     });
 }
 
