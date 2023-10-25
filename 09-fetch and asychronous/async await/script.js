@@ -20,8 +20,8 @@ async function getusers(){
      console.log(response);
 }
 //arrow async
-async function getPosts(){
-     const post = await fetch('https://jsonplaceholder.typicode.com/posts');
+const getPosts = async () => {
+     const post = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10');
      const response = await post.json();
      console.log(response);
 }

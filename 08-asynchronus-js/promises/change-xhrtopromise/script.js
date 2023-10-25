@@ -24,13 +24,35 @@ function getData(endpoint){
     });
 }
 
-getData('./movie.json')
-.then(data => {
-    console.log(data);
-    // console.log(data[0])
-    return getData('./director.json');
-})
-.then(director => {
-    console.log(director);
-})
-.catch(error => console.log(error));
+// getData('./movie.json')
+// .then(data => {
+//     console.log(data);
+//     // console.log(data[0])
+//     return getData('./director.json');
+// })
+// .then(director => {
+//     console.log(director);
+// })
+// .catch(error => console.log(error));
+
+//async with traditional xhr
+async function getInfo(){
+    const movies = await getData('./movies.json');
+    const directors = await getData('./directors.json');
+    console.log(movies, directors);
+}
+
+//async with fetch
+async function getAllDataWithFetch(){
+    const moviesRespond = await fetch('./movies.json');
+    const movies = await moviesRespond.json();
+    const directoesrespond = await fetch('./directors.json');
+    const directors = await directoesrespond.json();
+    console.log(movies, directors);
+}
+
+
+
+// getInfo();
+
+getAllDataWithFetch();
