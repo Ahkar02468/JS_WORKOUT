@@ -35,3 +35,6 @@ rect1.logName();
 
 const cir1 = new Circle('Cir 1');
 cir1.logName();
+
+console.log(rect1 instanceof Rectangle);
+console.log(rect1 instanceof Shape)
