@@ -49,3 +49,5 @@ bobWallet.deposit(2000);
 bobWallet.widraw(2800);
 console.log(bobWallet.balance);
 console.log(bobWallet.transactions);
+
+//Object can be sealed and forzened. try object property descriptor.
