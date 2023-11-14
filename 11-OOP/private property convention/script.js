@@ -1,43 +1,41 @@
 class Wallet{
-     constructor(){
-          this._balance = 0;
-          this._transactions = [];
-     }
+     #balance = 0;
+     #transactions = [];
 
      deposit(amount){
-          this._makeDeposit(amount);
-          this._balance += amount;
+          this.#makeDeposit(amount);
+          this.#balance += amount;
      }
 
      widraw(amount){
-          if(amount > this._balance){
+          if(amount > this.#balance){
                console.log('Fund is not enough!!')
                return;
           }
-          this._balance -= amount;
-          this._makeWidraw(amount);
+          this.#balance -= amount;
+          this.#makeWidraw(amount);
      }
 
      get balance(){
-          return this._balance;
+          return this.#balance;
      }
 
      get transactions(){
-          return this._transactions;
+          return this.#transactions;
      }
 
      //private method
-     _makeDeposit(amount){
+     #makeDeposit(amount){
           console.log(`Depost: ${amount}`);
-          this._transactions.push({
+          this.#transactions.push({
                type: 'Deposit',
                amount,
           });
      }
 
-     _makeWidraw(amount){
+     #makeWidraw(amount){
           console.log(`Depost: ${amount}`);
-          this._transactions.push({
+          this.#transactions.push({
                type: 'Widraw',
                amount,
           });
